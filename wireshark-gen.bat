@@ -1,0 +1,22 @@
+@echo off
+setlocal
+
+REM ---- SOURCE TREE (READ ONLY) ----
+set WIRESHARK_SRC_DIR=C:\Development\wireshark-src
+
+REM ---- THIRD-PARTY BASE (OUTSIDE SOURCE) ----
+set WIRESHARK_BASE_DIR=C:\Development\wireshark-libs
+
+REM ---- QT ----
+set CMAKE_PREFIX_PATH=C:\Qt\6.9.3\msvc2022_64
+
+echo WIRESHARK_SRC_DIR=%WIRESHARK_SRC_DIR%
+echo WIRESHARK_BASE_DIR=%WIRESHARK_BASE_DIR%
+echo CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%
+
+cmake ^
+  -G "Visual Studio 17 2022" ^
+  -A x64 ^
+  -DENABLE_WERROR=OFF ^
+  -DWIRESHARK_BASE_DIR=%WIRESHARK_BASE_DIR% ^
+  "%WIRESHARK_SRC_DIR%"
